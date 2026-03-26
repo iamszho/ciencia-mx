@@ -1,0 +1,71 @@
+version: "3.7"
+
+networks:
+  app-network:
+    driver: bridge
+
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.25
+    ports:
+      - "127.0.0.1:7700:7700"
+    volumes:
+      - ./search-service/meili_data:/meili_data
+    environment:
+      - MEILI_ENV=development
+      - MEILI_DB_PATH=/meili_data
+      - MEILI_EXPERIMENTAL_CONTAINS_FILTER=true
+    networks:
+      - app-network
+
+  api:
+    build: ./search-service
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./search-service/prod_data:/app/prod_data:ro
+      - ./drive-sa.json:/app/credentials/drive-sa.json:ro
+    depends_on:
+      - meilisearch
+    environment:
+      - MEILISEARCH_URL=http://meilisearch:7700
+      - GOOGLE_SA_FILE=/app/credentials/drive-sa.json
+      - DRIVE_FOLDER_ID=${DRIVE_FOLDER_ID}
+      # Security: set INGEST_API_KEY for /ingest, /reset, PATCH /resource
+      - INGEST_API_KEY=${INGEST_API_KEY:-}
+      # Comma-separated allowed CORS origins (default: localhost for dev)
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
+    networks:
+      - app-network
+
+  app:
+    build:
+      context: ./search-app
+      args:
+        API_BASE_URL: ${API_BASE_URL}
+        APP_BASE_URL: ${APP_BASE_URL}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL}
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL}
+      - API_BASE_URL=${API_BASE_URL}
+      - APP_BASE_URL=${APP_BASE_URL}
+    depends_on:
+      - api
+    networks:
+      - app-network
+    restart: always
+
+  html-server:
+    image: nginx:alpine
+    container_name: html-ciencia
+    ports:
+      - "8082:80"
+    volumes:
+      - ./landing:/usr/share/nginx/html:ro
+    networks:
+      - app-network

@@ -1,0 +1,4 @@
+[submodule "chatbot-widget"]
+	path = chatbot-widget
+	url = ssh://git@www.indava.dev:2222/indava-people/tcmc/chatbot.git
+	branch = doijo-ciencia-mx

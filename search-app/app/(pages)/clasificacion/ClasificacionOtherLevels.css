@@ -1,0 +1,56 @@
+.clasificacion-other-levels {
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid #ebebeb;
+}
+
+.clasificacion-other-levels__title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #002744;
+  margin: 0 0 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.clasificacion-other-levels__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.clasificacion-other-levels__item {
+  display: inline-block;
+}
+
+.clasificacion-other-levels__link {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.9rem;
+  color: var(--chip-color);
+  background-color: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.clasificacion-other-levels__link:hover {
+  background-color: var(--chip-hover-bg);
+  color: var(--chip-hover-color);
+  border-color: var(--chip-hover-border);
+}
+
+@media (prefers-color-scheme: dark) {
+  .clasificacion-other-levels {
+    border-top-color: #404040;
+  }
+
+  .clasificacion-other-levels__title {
+    color: var(--link-color);
+  }
+}

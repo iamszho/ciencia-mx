@@ -1,0 +1,151 @@
+.facets-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.facets-section .facet {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.facets-section .facet-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #fff;
+    padding: 14px 20px;
+    background-color: #002744;
+    border-radius: 30px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.facets-section .facet-title .facet-icon {
+    margin-right: 10px;
+}
+
+.facet-list {
+    list-style-type: none;
+}
+
+.facets-section .facet-list {
+    list-style-type: none;
+    padding: 0 20px;
+}
+
+.facet-item {
+    /* text-transform: capitalize; */
+}
+
+.facet-item a {
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 8px;
+    border-bottom: 1px dotted;
+    border-color: transparent;
+    border-bottom-color: #ebebeb;
+    word-break: break-all;
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+.facet-item a:hover {
+    border-bottom-color: #d8d8d8;
+    color: var(--link-color-hover);
+    background-color: #fafafa;
+}
+
+.facet-item a .facet-count {
+    background-color: #ebebeb;
+    padding: 2px 5px;
+    display: block;
+    min-width: 56px;
+    text-align: center;
+    border-radius: 20px;
+}
+
+/* Intermediate pages (autores, areas-conocimiento, clasificacion, etc.): chip theming */
+.facets-page .facet-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin-top: 0.5rem;
+}
+
+.facets-page .facet-item {
+    display: inline-block;
+}
+
+.facets-page .facet-item a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.9rem;
+    color: var(--chip-color);
+    background-color: var(--chip-bg);
+    border: 1px solid var(--chip-border);
+    border-radius: 9999px;
+    border-bottom: 1px solid var(--chip-border);
+    border-bottom-style: solid;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.facets-page .facet-item a:hover {
+    background-color: var(--chip-hover-bg);
+    color: var(--chip-hover-color);
+    border-color: var(--chip-hover-border);
+    border-bottom-color: var(--chip-hover-border);
+}
+
+.facets-page .facet-item a .facet-count {
+    background-color: rgba(0, 0, 0, 0.08);
+    padding: 2px 6px;
+    min-width: auto;
+    border-radius: 9999px;
+    font-size: 0.85em;
+}
+
+@media (prefers-color-scheme: dark) {
+    .facets-page .facet-item a .facet-count {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+}
+
+@media (min-width: 768px) {
+    .facets-section {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .facets-page .facet-list {
+        margin-top: 20px;
+        column-count: 2;
+        column-gap: 20px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .facets-section .facet-item a {
+        border-bottom-color: #404040;
+    }
+
+    .facets-section .facet-item a:hover {
+        border-bottom-color: #666;
+        color: var(--link-color-hover);
+        background-color: #2a2a2a;
+    }
+
+    .facet-item a .facet-count {
+        background-color: #171717;
+    }
+
+    /* facets-page chips use CSS variables, already themed */
+    .facets-page .facet-item a .facet-count {
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+}

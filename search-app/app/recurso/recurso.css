@@ -1,0 +1,123 @@
+.recurso-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: .5rem;
+}
+
+.recurso-meta {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.recurso-description {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+
+.recurso-section {
+    margin-top: 1.5rem;
+    border: 1px solid #ececec;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 15px;
+}
+
+.recurso-section h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+.recurso-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recurso-list a {
+    display: block;
+    color: var(--link-color);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.recurso-list li:not(:last-child) {
+    margin-bottom: 6px;
+}
+
+.recurso-list a:hover {
+    color: var(--link-color-hover);
+}
+
+.recurso-section p a {
+    color: var(--link-color);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.recurso-section p a:hover {
+    color: var(--link-color-hover);
+}
+
+/* Chip list (same style as "Otros niveles de clasificación") */
+.recurso-chip-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.recurso-chip-item {
+    display: inline-block;
+}
+
+.recurso-chip-link {
+    display: inline-block;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.9rem;
+    color: var(--chip-color);
+    background-color: var(--chip-bg);
+    border: 1px solid var(--chip-border);
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.recurso-chip-link:hover {
+    background-color: var(--chip-hover-bg);
+    color: var(--chip-hover-color);
+    border-color: var(--chip-hover-border);
+}
+
+
+@media (min-width: 768px) {
+    .recurso-info {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    .recurso-info div:not(:last-child) {
+        border-right: 1px solid #ccc;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .recurso-section h3 {
+        color: #fff;
+    }
+
+    .recurso-meta {
+        color: #e2e2e2;
+    }
+
+    .recurso-section {
+        background-color: #171717;
+        color: #fff;
+    }
+
+    /* Chips use CSS variables; no override needed */
+}

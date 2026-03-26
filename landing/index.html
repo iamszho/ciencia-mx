@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciencia Abierta MX</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2B3F45XQZ4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-2B3F45XQZ4');
+    </script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'media',
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: 'var(--obsidian)',
+                        surface: 'var(--surface)',
+                        brand: 'var(--brand)',
+                        accent: 'var(--accent)',
+                        text: 'var(--text)',
+                        muted: 'var(--muted)',
+                        header: '#002744', 
+                        'ca-blue': '#526DFF',
+                        'ca-gold': '#C5BD69'
+                    },
+                    fontFamily: {
+                        sans: ['Satoshi', 'sans-serif'],
+                        display: ['Clash Display', 'sans-serif'],
+                    },
+                    maxWidth: {
+                        'container': '1440px',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --obsidian: #ffffff;
+            --surface: #F8F9FA;
+            --brand: #3B82F6;
+            --accent: #F59E0B;
+            --text: #212529;
+            --muted: #6C757D;
+            --card-bg: linear-gradient(180deg, rgba(248, 249, 250, 0.9) 0%, rgba(233, 236, 239, 0.95) 100%);
+            --card-border: rgba(0, 0, 0, 0.08);
+            --section-bg: rgba(245, 245, 245, 0.5);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --obsidian: #0A0A0B;
+                --surface: #18181B;
+                --brand: #3B82F6;
+                --accent: #F59E0B;
+                --text: #E4E4E7;
+                --muted: #A1A1AA;
+                --card-bg: linear-gradient(180deg, rgba(39, 39, 42, 0.6) 0%, rgba(24, 24, 27, 0.8) 100%);
+                --card-border: rgba(255, 255, 255, 0.08);
+                --section-bg: rgba(24, 24, 27, 0.5);
+            }
+        }
+
+        body {
+            background-color: var(--obsidian);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- NAVBAR STYLES --- */
+        .header {
+            background-color: #002744;
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header__container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover { opacity: 0.8; }
+
+        .mobile-toggle { display: none; color: white; font-size: 1.5rem; }
+
+        @media (max-width: 1023px) {
+            .mobile-toggle { display: block; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 70px; left: 0; width: 100%;
+                background-color: #002744;
+                flex-direction: column;
+                padding: 1rem 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu li { width: 100%; text-align: center; }
+            .nav-link { display: block; padding: 1rem; }
+        }
+
+        /* --- FOOTER STYLES --- */
+        .footer {
+            background-color: #000000;
+            color: #fff;
+            margin-top: auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .footer__container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .footer__nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .footer__link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .footer__copyright {
+            color: #fff;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .logo-text {
+            font-family: 'Satoshi', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            line-height: 1;
+            display: flex;
+            align-items: baseline;
+            letter-spacing: -0.02em;
+        }
+        .logo-ciencia { color: #526DFF; }
+        .logo-abierta { color: #C5BD69; }
+        .logo-mx { color: #C5BD69; font-size: 0.8em; margin-left: 2px; }
+
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.15) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.08) 0px, transparent 50%);
+            position: absolute; inset: 0; z-index: -1; pointer-events: none;
+        }
+        .b2b-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .b2b-card:hover { border-color: rgba(59, 130, 246, 0.4); transform: translateY(-2px); }
+        
+        input, select {
+            background-color: var(--obsidian) !important;
+            border-color: rgba(120,120,120, 0.3) !important;
+            color: var(--text) !important;
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <header class="header">
+        <div class="header__container">
+            <a href="/" class="flex items-center gap-3 no-underline">
+                <img src="./ca-isotipo.png" alt="Logo" class="h-10 w-auto">
+                <div class="logo-text hidden sm:flex">
+                    <img src="./ca-tipo.png" alt="Logo" class="h-6 w-auto">
+                </div>
+            </a>
+
+            <button class="mobile-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="https://buscador.cienciaabierta.mx/acerca-del-proyecto" class="nav-link">Acerca de</a></li>
+                    <li><a href="https://buscador.cienciaabierta.mx/plan-de-trabajo" class="nav-link">Plan de Trabajo</a></li>
+                    <li><a href="https://buscador.cienciaabierta.mx/informacion-tecnica" class="nav-link">Bibliotecarios</a></li>
+                    <li><a href="https://buscador.cienciaabierta.mx" class="nav-link">Acervo</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    <li>
+                        <a href="https://buscador.cienciaabierta.mx/ayuda" class="nav-link flex items-center">
+                            <i class="fa-regular fa-circle-question text-xl"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="mesh-gradient"></div>
+
+    <main class="relative z-10 w-full min-h-[85vh] flex flex-col justify-center overflow-hidden selection:bg-brand selection:text-white">
+        
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-brand/10 blur-[100px] rounded-full mix-blend-screen animate-pulse-slow"></div>
+            
+            <svg class="absolute inset-0 w-full h-full opacity-20">
+                <defs>
+                    <pattern id="grid-pattern" width="60" height="60" patternUnits="userSpaceOnUse">
+                        <path d="M 60 0 L 0 0 0 60" fill="none" stroke="white" stroke-width="0.5" stroke-opacity="0.05"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+            </svg>
+        </div>
+
+        <div class="relative z-20 w-full max-w-5xl mx-auto px-6 md:px-12 flex flex-col items-start">                    
+            
+            <h1 class="font-display font-semibold text-5xl sm:text-7xl md:text-8xl leading-[1.05] mb-8 text-slate-900 dark:text-slate-100 tracking-tight drop-shadow-2xl max-w-4xl">
+                Su repositorio <br class="hidden md:block" /> institucional, <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-slate-100 dark:via-slate-300 dark:to-slate-100">gestionado por expertos.</span>
+            </h1>
+
+            <p class="text-lg md:text-2xl text-slate-700 dark:text-slate-300 mb-10 leading-relaxed max-w-2xl font-light border-l-2 border-brand/50 pl-6">
+                Elimine la carga técnica de su equipo de TI. Nos especializamos exclusivamente en <strong class="text-slate-900 dark:text-slate-100 font-medium">DSpace, OJS y cumplimiento de normativas</strong> para universidades y centros de investigación.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
+                <a href="#contacto" class="w-full sm:w-auto bg-brand text-white font-bold px-10 py-5 rounded-xl hover:bg-blue-600 transition-all shadow-[0_0_40px_rgba(59,130,246,0.3)] hover:shadow-[0_0_60px_rgba(59,130,246,0.5)] hover:-translate-y-1 text-center text-lg flex items-center justify-center gap-2 group">
+                    Solicitar Diagnóstico
+                    <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+                <a href="https://buscador.cienciaabierta.mx/" class="w-full sm:w-auto px-10 py-5 rounded-xl border border-slate-300 dark:border-slate-600 bg-white/20 hover:bg-white/30 dark:bg-slate-800/20 dark:hover:bg-slate-700/30 backdrop-blur-sm transition-all text-slate-900 dark:text-slate-100 font-medium text-center text-lg hover:-translate-y-1">
+                   Buscar en el acervo
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <section id="casos" class="py-16 bg-surface/50 border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-display font-medium text-text mb-4">¿Por qué contratar una consultoría externa?</h2>
+            <div class="grid md:grid-cols-3 gap-8 mt-12">
+                <div class="p-6">
+                    <div class="text-4xl mb-4">📚</div>
+                    <h3 class="text-text font-bold mb-2">Hablamos "Bibliotecario"</h3>
+                    <p class="text-sm text-muted">Entendemos la diferencia entre Dublin Core y MARC21.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="text-text font-bold mb-2">Sin Curva de Aprendizaje</h3>
+                    <p class="text-sm text-muted">Su equipo de TI tiene otras prioridades. Nosotros vivimos DSpace.</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl mb-4">🏛️</div>
+                    <h3 class="text-text font-bold mb-2">Cumplimiento Normativo</h3>
+                    <p class="text-sm text-muted">Garantizamos interoperabilidad nacional e internacional.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="soluciones" class="py-24 max-w-container mx-auto px-6">
+        <div class="mb-16">
+            <span class="text-brand font-bold uppercase tracking-wider text-sm">Nuestros Servicios</span>
+            <h2 class="font-display text-4xl text-text mt-2 mb-4">Infraestructura de Clase Mundial</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="b2b-card p-8 rounded-xl group">
+                <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center mb-6 text-brand">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                </div>
+                <h3 class="text-xl font-bold text-text mb-2">Instalación DSpace / OJS</h3>
+                <p class="text-sm text-muted mb-4">Implementación "Llave en mano" de repositorios y revistas. Incluye configuración de servidor, SSL, correos y diseño base.</p>
+                <div class="border-t border-white/5 pt-4 mt-auto">
+                    <span class="text-xs font-mono text-slate-700 dark:text-slate-300 group-hover:underline cursor-pointer badge-text">Ideal para: Nuevos Proyectos</span>
+                </div>
+            </div>
+
+            <div class="b2b-card p-8 rounded-xl group border-accent/30 relative overflow-hidden">
+                <div class="absolute top-0 right-0 bg-accent text-obsidian text-[10px] font-bold px-2 py-1 uppercase">Más Solicitado</div>
+                <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center mb-6 text-accent">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                </div>
+                <h3 class="text-xl font-bold text-text mb-2">Migración y Actualización</h3>
+                <p class="text-sm text-muted mb-4">Movemos su información de versiones obsoletas (DSpace 5/6) a la moderna versión 9.x sin perder un solo metadato or handle.</p>
+                <div class="border-t border-white/5 pt-4 mt-auto">
+                    <span class="text-xs font-mono text-slate-700 dark:text-slate-300 group-hover:underline cursor-pointer badge-text">Ideal para: Modernización</span>
+                </div>
+            </div>
+
+            <div class="b2b-card p-8 rounded-xl group">
+                <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center mb-6 text-red-400">
+                    <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center mb-6 text-orange-400">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+                    </svg>
+                </div>
+                </div>
+                <h3 class="text-xl font-bold text-text mb-2">Otros Servicios</h3>
+                <p class="text-sm text-muted mb-4">Si no encuentra lo que está buscando, pregúntenos. Seguramente podremos ayudarle.</p>
+                <div class="border-t border-white/5 pt-4 mt-auto">
+                    <span class="text-xs font-mono text-slate-700 dark:text-slate-300 group-hover:underline cursor-pointer badge-text">Ideal para: Equipos existentes</span>
+                </div>
+            </div>
+
+            <div class="b2b-card p-8 rounded-xl group">
+                <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center mb-6 text-slate-600">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </div>
+                <h3 class="text-xl font-bold text-text mb-2">Gestión Masiva de DOIs</h3>
+                <p class="text-sm text-muted mb-4">Asignación retrospectiva de miles de DOIs. Automatizamos el registro en Crossref o DataCite para todo su acervo histórico.</p>
+            </div>
+
+            <div class="b2b-card p-8 rounded-xl group">
+                <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center mb-6 text-slate-600">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <h3 class="text-xl font-bold text-text mb-2">Indexación Nacional</h3>
+                <p class="text-sm text-muted mb-4">Conectamos su repositorio a la red Ciencia Abierta MX y otros agregadores para aumentar las citas de sus investigadores.</p>
+            </div>
+
+            <div class="b2b-card p-8 rounded-xl group">
+                <div class="w-12 h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center mb-6 text-slate-600">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
+                <h3 class="text-xl font-bold text-text mb-2">Auditoría & Capacitación</h3>
+                <p class="text-sm text-muted mb-4">Entrenamos a su personal de biblioteca en el uso de DSpace/OJS y realizamos auditorías de preservación digital.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="metodologia" class="py-20 bg-highlight/30 border-y border-white/5">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="font-display text-3xl text-text text-center mb-12">Nuestro Proceso de Trabajo</h2>
+            <div class="space-y-8">
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-brand text-white flex items-center justify-center font-bold">1</div>
+                        <div class="h-full w-px bg-white/10 my-2"></div>
+                    </div>
+                    <div class="pb-8">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100">Diagnóstico y Cotización</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm mt-2">Analizamos su infraestructura actual (servidor, versión de software, base de datos) y entregamos una propuesta técnica detallada con tiempos fijos.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-surface border border-white/20 text-text flex items-center justify-center font-bold">2</div>
+                        <div class="h-full w-px bg-white/10 my-2"></div>
+                    </div>
+                    <div class="pb-8">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100">Ejecución en Entorno de Pruebas</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm mt-2">Nunca tocamos su servidor en producción directamente. Creamos un espejo, realizamos la migración/reparación y validamos con usted.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex flex-col items-center">
+                        <div class="w-10 h-10 rounded-full bg-surface border border-white/20 text-text flex items-center justify-center font-bold">3</div>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-slate-100">Puesta en Marcha y Garantía</h4>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm mt-2">Desplegamos la solución final y ofrecemos 30 días de soporte técnico post-implementación para asegurar estabilidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="py-24 max-w-container mx-auto px-6 grid lg:grid-cols-2 gap-16">
+        <div>
+            <h2 class="font-display text-4xl text-text mb-6">Inicie la conversación</h2>
+            <p class="text-muted mb-8 text-lg">No somos un bot. Llene este formulario y un consultor técnico (no un vendedor) revisará su caso y le responderá en menos de 24 horas.</p>
+
+            <div class="space-y-4">
+                <div class="flex items-center gap-4 text-muted">
+                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">✉️</div>
+                    <span>contacto@cienciaabierta.mx</span>
+                </div>
+                <div class="flex items-center gap-4 text-muted">
+                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">🔒</div>
+                    <span>Contratos bajo NDA (Acuerdo de Confidencialidad) disponible.</span>
+                </div>
+            </div>
+        </div>
+
+        <form id="contactForm" class="bg-surface border border-white/10 p-8 rounded-2xl shadow-2xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <div>
+                    <label class="block text-xs font-bold text-muted uppercase mb-2">Nombre</label>
+                    <input type="text" name="nombre" class="w-full bg-obsidian border border-white/10 rounded p-3 text-text focus:border-brand focus:outline-none transition-colors" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-muted uppercase mb-2">Institución</label>
+                    <input type="text" name="institucion" class="w-full bg-obsidian border border-white/10 rounded p-3 text-text focus:border-brand focus:outline-none transition-colors" required>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label class="block text-xs font-bold text-muted uppercase mb-2">Correo Electrónico</label>
+                <input type="email" name="correo" class="w-full bg-obsidian border border-white/10 rounded p-3 text-text focus:border-brand focus:outline-none transition-colors" required>
+            </div>
+
+            <div class="mb-6">
+                <label class="block text-xs font-bold text-muted uppercase mb-2">¿Cómo podemos ayudarle?</label>
+                <select name="ayuda" class="w-full bg-obsidian border border-white/10 rounded p-3 text-text focus:border-brand focus:outline-none transition-colors" required>
+                    <option>Necesito instalar DSpace / OJS</option>
+                    <option>Quiero migrar/actualizar mi repositorio</option>
+                    <option>Otros servicios</option>
+                    <option>Necesito DOIs masivos</option>
+                    <option>Interés en Indexación</option>
+                </select>
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-brand to-blue-600 text-white font-bold py-4 rounded hover:shadow-glow transition-all disabled:opacity-50">
+                Solicitar evaluación sin costo
+            </button>
+            <div id="message" class="mt-4 text-center text-sm"></div>
+            <p class="text-xs text-center text-muted mt-4">Sus datos están protegidos. Respuesta en < 24 hrs.</p>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="flex flex-col items-center gap-2">
+                <img src="./ca-isotipo.png" alt="Logo" class="h-12 w-auto">
+            </div>
+            
+            <nav class="footer__nav">
+                <a href="https://buscador.cienciaabierta.mx/autores" class="footer__link">Autores</a>
+                <a href="https://buscador.cienciaabierta.mx/repositorios" class="footer__link">Repositorios</a>
+                <a href="https://buscador.cienciaabierta.mx/areas-conocimiento" class="footer__link">Áreas de Conocimiento</a>
+                <a href="https://buscador.cienciaabierta.mx/tipo-publicacion" class="footer__link">Tipo de Publicación</a>
+            </nav>
+            
+            <p class="footer__copyright">© 2026 CIENCIA ABIERTA MX. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize EmailJS
+        (function(){
+            emailjs.init('BRULxk71p7ID6gamQ');
+        })();
+
+        function toggleMenu() {
+            const list = document.getElementById('navMenu');
+            list.classList.toggle('active');
+        }
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const messageDiv = document.getElementById('message');
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            messageDiv.textContent = '';
+
+            // Send email using EmailJS
+            emailjs.sendForm('service_qechvf6', 'template_c5bdntw', this)
+                .then(function() {
+                    messageDiv.textContent = 'Mensaje enviado exitosamente!';
+                    messageDiv.className = 'mt-4 text-center text-sm text-green-600';
+                    document.getElementById('contactForm').reset();
+                }, function(error) {
+                    console.log('FAILED...', error);
+                    messageDiv.textContent = 'Error al enviar el mensaje. Inténtalo de nuevo.';
+                    messageDiv.className = 'mt-4 text-center text-sm text-red-600';
+                })
+                .finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Solicitar Cotización';
+                });
+        });
+    </script>
+</body>
+</html>
