@@ -153,12 +153,10 @@
 }
 
 .result__item:hover {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    transform: scale(1.02);
-}
-
-.result__item:not(:first-child):hover {
-    margin-top: -10px;
+    border-color: #002744;
+    box-shadow: 0 2px 8px rgba(0, 39, 68, 0.10);
+    background-color: #f8fafc;
+    transform: scale(1.009);
 }
 
 
@@ -376,139 +374,270 @@
 
 
 @media (prefers-color-scheme: dark) {
-
-    .search-form,
-    .result__item,
-    .results__in-page {
+    html:not([data-theme="light"]) :is(.search-form, .result__item, .results__in-page) {
         background-color: #171717;
         color: #fff;
     }
 
-    .form__group label,
-    h2,
-    .result__item h3 {
+    html:not([data-theme="light"]) :is(.form__group label, h2, .result__item h3) {
         color: #fff;
     }
 
-    .h2,
-    .h2 .results__count,
-    .results__count {
+    html:not([data-theme="light"]) :is(.h2, .h2 .results__count, .results__count) {
         color: #7eb8ed;
     }
 
-    .result__item .description,
-    .result__item p {
+    html:not([data-theme="light"]) :is(.result__item .description, .result__item p) {
         color: #e2e2e2;
     }
 
-    .pagination {
+    html:not([data-theme="light"]) .result__item:hover {
+        border-color: #475569;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        background-color: #1f2937;
+    }
+
+    html:not([data-theme="light"]) .pagination {
         background: #1e293b;
         border-color: #334155;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
 
-    .pagination-info__text {
+    html:not([data-theme="light"]) .pagination-info__text {
         color: #94a3b8;
     }
 
-    .pagination-nav__prev,
-    .pagination-nav__next {
+    html:not([data-theme="light"]) :is(.pagination-nav__prev, .pagination-nav__next) {
         background: #334155;
         border-color: #475569;
         color: #e2e8f0;
     }
 
-    .pagination-nav__prev:hover:not(:disabled),
-    .pagination-nav__next:hover:not(:disabled) {
+    html:not([data-theme="light"]) :is(.pagination-nav__prev:hover:not(:disabled), .pagination-nav__next:hover:not(:disabled)) {
         background: #475569;
         border-color: #7eb8ed;
         color: #f8fafc;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
-    .pagination-nav__prev:disabled,
-    .pagination-nav__next:disabled {
+    html:not([data-theme="light"]) :is(.pagination-nav__prev:disabled, .pagination-nav__next:disabled) {
         background: #1e293b;
         border-color: #334155;
         color: #64748b;
     }
 
-    .pagination-nav__page {
+    html:not([data-theme="light"]) .pagination-nav__page {
         background: #334155;
         border-color: #475569;
         color: #e2e8f0;
     }
 
-    .pagination-nav__page:hover {
+    html:not([data-theme="light"]) .pagination-nav__page:hover {
         background: #475569;
         border-color: #7eb8ed;
         color: #f8fafc;
     }
 
-    .pagination-nav__page--active {
+    html:not([data-theme="light"]) .pagination-nav__page--active {
         background: #7eb8ed;
         border-color: #7eb8ed;
         color: #0f172a;
     }
 
-    .pagination-nav__page--active:hover {
+    html:not([data-theme="light"]) .pagination-nav__page--active:hover {
         background: #7eb8ed;
         border-color: #7eb8ed;
         color: #0f172a;
     }
 
-    .pagination-ellipsis {
+    html:not([data-theme="light"]) .pagination-ellipsis {
         color: #64748b;
     }
 
-    .input {
+    html:not([data-theme="light"]) .input {
         background-color: #27272a;
         border-color: #525252;
         color: #e4e4e7;
     }
 
-    .input:focus {
+    html:not([data-theme="light"]) .input:focus {
         border-color: #3b82f6;
         box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
     }
 
-    .button {
+    html:not([data-theme="light"]) .button {
         background-color: #3b82f6;
         color: #fff;
     }
 
-    .button:hover {
+    html:not([data-theme="light"]) .button:hover {
         background-color: #2563eb;
     }
 
-    .button--reset {
+    html:not([data-theme="light"]) .button--reset {
         background-color: #374151;
         color: #d1d5db;
     }
 
-    .button--reset:hover {
+    html:not([data-theme="light"]) .button--reset:hover {
         background-color: #4b5563;
     }
 
-    .toggle__buttons {
+    html:not([data-theme="light"]) .toggle__buttons {
         border-bottom-color: #374151;
     }
 
-    .toggle__buttons button {
+    html:not([data-theme="light"]) .toggle__buttons button {
         color: #d1d5db;
     }
 
-    .toggle__buttons button:hover {
+    html:not([data-theme="light"]) .toggle__buttons button:hover {
         color: #f9fafb;
     }
 
-    .toggle__buttons button.active {
+    html:not([data-theme="light"]) .toggle__buttons button.active {
         color: #3b82f6;
         border-bottom-color: #3b82f6;
     }
 
-    .toggle__buttons button.active .icon {
+    html:not([data-theme="light"]) .toggle__buttons button.active .icon {
         background-color: #3b82f6;
         color: #fff;
     }
+}
+
+html[data-theme="dark"] .search-form,
+html[data-theme="dark"] .result__item,
+html[data-theme="dark"] .results__in-page {
+    background-color: #171717;
+    color: #fff;
+}
+
+html[data-theme="dark"] .form__group label,
+html[data-theme="dark"] h2,
+html[data-theme="dark"] .result__item h3 {
+    color: #fff;
+}
+
+html[data-theme="dark"] .h2,
+html[data-theme="dark"] .h2 .results__count,
+html[data-theme="dark"] .results__count {
+    color: #7eb8ed;
+}
+
+html[data-theme="dark"] .result__item .description,
+html[data-theme="dark"] .result__item p {
+    color: #e2e2e2;
+}
+
+html[data-theme="dark"] .result__item:hover {
+    border-color: #475569;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    background-color: #1f2937;
+}
+
+html[data-theme="dark"] .pagination {
+    background: #1e293b;
+    border-color: #334155;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"] .pagination-info__text {
+    color: #94a3b8;
+}
+
+html[data-theme="dark"] .pagination-nav__prev,
+html[data-theme="dark"] .pagination-nav__next {
+    background: #334155;
+    border-color: #475569;
+    color: #e2e8f0;
+}
+
+html[data-theme="dark"] .pagination-nav__prev:hover:not(:disabled),
+html[data-theme="dark"] .pagination-nav__next:hover:not(:disabled) {
+    background: #475569;
+    border-color: #7eb8ed;
+    color: #f8fafc;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+html[data-theme="dark"] .pagination-nav__prev:disabled,
+html[data-theme="dark"] .pagination-nav__next:disabled {
+    background: #1e293b;
+    border-color: #334155;
+    color: #64748b;
+}
+
+html[data-theme="dark"] .pagination-nav__page {
+    background: #334155;
+    border-color: #475569;
+    color: #e2e8f0;
+}
+
+html[data-theme="dark"] .pagination-nav__page:hover {
+    background: #475569;
+    border-color: #7eb8ed;
+    color: #f8fafc;
+}
+
+html[data-theme="dark"] .pagination-nav__page--active,
+html[data-theme="dark"] .pagination-nav__page--active:hover {
+    background: #7eb8ed;
+    border-color: #7eb8ed;
+    color: #0f172a;
+}
+
+html[data-theme="dark"] .pagination-ellipsis {
+    color: #64748b;
+}
+
+html[data-theme="dark"] .input {
+    background-color: #27272a;
+    border-color: #525252;
+    color: #e4e4e7;
+}
+
+html[data-theme="dark"] .input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+html[data-theme="dark"] .button {
+    background-color: #3b82f6;
+    color: #fff;
+}
+
+html[data-theme="dark"] .button:hover {
+    background-color: #2563eb;
+}
+
+html[data-theme="dark"] .button--reset {
+    background-color: #374151;
+    color: #d1d5db;
+}
+
+html[data-theme="dark"] .button--reset:hover {
+    background-color: #4b5563;
+}
+
+html[data-theme="dark"] .toggle__buttons {
+    border-bottom-color: #374151;
+}
+
+html[data-theme="dark"] .toggle__buttons button {
+    color: #d1d5db;
+}
+
+html[data-theme="dark"] .toggle__buttons button:hover {
+    color: #f9fafb;
+}
+
+html[data-theme="dark"] .toggle__buttons button.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+}
+
+html[data-theme="dark"] .toggle__buttons button.active .icon {
+    background-color: #3b82f6;
+    color: #fff;
 }

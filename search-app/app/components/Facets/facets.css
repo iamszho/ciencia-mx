@@ -15,8 +15,8 @@
     margin-bottom: 20px;
     color: #fff;
     padding: 14px 20px;
-    background-color: #002744;
-    border-radius: 30px;
+    background: linear-gradient(135deg, #0d3d6b 0%, #002744 100%);
+    border-radius: 8px;
     margin-top: 0;
     display: flex;
     align-items: center;
@@ -35,27 +35,49 @@
     padding: 0 20px;
 }
 
-.facet-item {
-    /* text-transform: capitalize; */
-}
-
 .facet-item a {
     justify-content: space-between;
     align-items: center;
     display: flex;
     padding: 8px;
-    border-bottom: 1px dotted;
-    border-color: transparent;
+    border: 1px solid transparent;
     border-bottom-color: #ebebeb;
+    border-radius: 6px;
     word-break: break-all;
-    color: var(--link-color);
+    color: #111111;
     text-decoration: none;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
 }
 
+/* Light mode hover: subtle gray border + blue text */
 .facet-item a:hover {
-    border-bottom-color: #d8d8d8;
-    color: var(--link-color-hover);
-    background-color: #fafafa;
+    border-color: #d0d0d0;
+    color: #1a73e8;
+    background-color: #f5f5f5;
+}
+
+/* Dark mode: white text */
+@media (prefers-color-scheme: dark) {
+    html:not([data-theme="light"]) .facet-item a {
+        color: #ffffff;
+        border-bottom-color: #404040;
+    }
+    html:not([data-theme="light"]) .facet-item a:hover {
+        color: #ffffff;
+        border-color: #3a3a3a;
+        background-color: #1e1e1e;
+    }
+}
+
+html[data-theme="dark"] .facet-item a {
+    color: #ffffff;
+    border-bottom-color: #404040;
+}
+
+html[data-theme="dark"] .facet-item a:hover {
+    color: #ffffff;
+    border-color: #3a3a3a;
+    background-color: #1e1e1e;
 }
 
 .facet-item a .facet-count {
@@ -69,27 +91,31 @@
 
 /* Intermediate pages (autores, areas-conocimiento, clasificacion, etc.): chip theming */
 .facets-page .facet-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+    column-gap: 1.75rem;
     padding: 0;
     margin-top: 0.5rem;
 }
 
 .facets-page .facet-item {
-    display: inline-block;
+    display: block;
+    min-width: 0;
 }
 
 .facets-page .facet-item a {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 0.35rem;
-    padding: 0.4rem 0.85rem;
+    justify-content: space-between;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.5rem 0.85rem;
     font-size: 0.9rem;
     color: var(--chip-color);
     background-color: var(--chip-bg);
     border: 1px solid var(--chip-border);
-    border-radius: 9999px;
+    border-radius: 8px;
     border-bottom: 1px solid var(--chip-border);
     border-bottom-style: solid;
     text-decoration: none;
@@ -107,14 +133,18 @@
     background-color: rgba(0, 0, 0, 0.08);
     padding: 2px 6px;
     min-width: auto;
-    border-radius: 9999px;
+    border-radius: 6px;
     font-size: 0.85em;
 }
 
 @media (prefers-color-scheme: dark) {
-    .facets-page .facet-item a .facet-count {
+    html:not([data-theme="light"]) .facets-page .facet-item a .facet-count {
         background-color: rgba(255, 255, 255, 0.15);
     }
+}
+
+html[data-theme="dark"] .facets-page .facet-item a .facet-count {
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 @media (min-width: 768px) {
@@ -124,28 +154,46 @@
 
     .facets-page .facet-list {
         margin-top: 20px;
-        column-count: 2;
-        column-gap: 20px;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
     }
 }
 
 @media (prefers-color-scheme: dark) {
-    .facets-section .facet-item a {
+    html:not([data-theme="light"]) .facets-section .facet-item a {
         border-bottom-color: #404040;
     }
 
-    .facets-section .facet-item a:hover {
+    html:not([data-theme="light"]) .facets-section .facet-item a:hover {
         border-bottom-color: #666;
         color: var(--link-color-hover);
         background-color: #2a2a2a;
     }
 
-    .facet-item a .facet-count {
+    html:not([data-theme="light"]) .facet-item a .facet-count {
         background-color: #171717;
     }
 
     /* facets-page chips use CSS variables, already themed */
-    .facets-page .facet-item a .facet-count {
+    html:not([data-theme="light"]) .facets-page .facet-item a .facet-count {
         background-color: rgba(255, 255, 255, 0.15);
     }
+}
+
+html[data-theme="dark"] .facets-section .facet-item a {
+    border-bottom-color: #404040;
+}
+
+html[data-theme="dark"] .facets-section .facet-item a:hover {
+    border-bottom-color: #666;
+    color: var(--link-color-hover);
+    background-color: #2a2a2a;
+}
+
+html[data-theme="dark"] .facet-item a .facet-count {
+    background-color: #171717;
+}
+
+html[data-theme="dark"] .facets-page .facet-item a .facet-count {
+    background-color: rgba(255, 255, 255, 0.15);
 }

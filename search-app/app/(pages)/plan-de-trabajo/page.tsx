@@ -57,11 +57,11 @@ export default function Page() {
                 </div>
             </div>
             <h2 className="list__title">Lo que ya puedes hacer</h2>
-            <ul className="list__items">
-                <li className="list__item">Buscar artículos, tesis y documentos científicos de acceso abierto.</li>
-                <li className="list__item">Explorar resultados con una interfaz mínima y funcional.</li>
-                <li className="list__item">Ver los acervos de las primeras 40 instituciones que hemos integrado.</li>
-                <li className="list__item">Acceder a metadatos normalizados.</li>
+            <ul className="reasons-list">
+                <li>Buscar artículos, tesis y documentos científicos de acceso abierto.</li>
+                <li>Explorar resultados con una interfaz mínima y funcional.</li>
+                <li>Ver los acervos de las primeras 40 instituciones que hemos integrado.</li>
+                <li>Acceder a metadatos normalizados.</li>
             </ul>
             <h2>Llamado a colaboración</h2>
             <p>Universidades, administradores de repositorios, bibliotecarios, investigadores y divulgadores: su colaboración es crucial. Si administras un repositorio, podemos integrarlo; si eres académico, puedes validar resultados; si eres divulgador, puedes ayudarnos a mejorar la experiencia. Universidades, bibliotecarios, administradores de repositorios, investigadores y divulgadores.</p>

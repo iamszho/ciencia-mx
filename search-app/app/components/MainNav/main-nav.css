@@ -5,6 +5,8 @@
 .main-nav__item {
     margin: 0 10px;
     color: #fff;
+    display: flex;
+    align-items: center;
 }
 
 .main-nav__list {
@@ -39,18 +41,25 @@
     font-size: 20px;
 }
 
+.main-nav__item--theme {
+    display: inline-flex;
+    align-items: center;
+}
+
 @media screen and (min-width: 1024px) {
     .main-nav__list {
         display: flex !important;
         justify-content: center;
-    }
-
-    .main-nav__item:not(:last-child) {
-        padding-top: 2px;
+        align-items: center;
+        gap: 4px;
     }
 }
 
 @media (max-width: 1023px) {
+    .main-nav__item--theme {
+        padding: 12px 40px;
+    }
+
     .main-nav__list {
         padding: 0;
         background-color: #1683b8;
