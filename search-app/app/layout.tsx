@@ -25,6 +25,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`(function(){try{var theme=localStorage.getItem('ciencia-mx-theme');if(theme==='dark'||theme==='light'){document.documentElement.setAttribute('data-theme',theme);}}catch(e){}})();`}
+        </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-2B3F45XQZ4"
           strategy="afterInteractive"

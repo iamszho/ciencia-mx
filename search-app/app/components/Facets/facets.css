@@ -43,10 +43,18 @@
     border: 1px solid transparent;
     border-bottom-color: #ebebeb;
     border-radius: 6px;
-    word-break: break-all;
     color: #111111;
     text-decoration: none;
     transition: border-color 0.15s ease, background-color 0.15s ease;
+    gap: 8px;
+}
+
+.facet-item a .facet-label {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
 }
 
 /* Light mode hover: subtle gray border + blue text */
@@ -87,6 +95,8 @@ html[data-theme="dark"] .facet-item a:hover {
     min-width: 56px;
     text-align: center;
     border-radius: 20px;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 /* Intermediate pages (autores, areas-conocimiento, clasificacion, etc.): chip theming */
@@ -135,6 +145,8 @@ html[data-theme="dark"] .facet-item a:hover {
     min-width: auto;
     border-radius: 6px;
     font-size: 0.85em;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 @media (prefers-color-scheme: dark) {
