@@ -24,7 +24,7 @@ export default function Page() {
             </div>
             <div className="list">
                 <p>Los estándares, tecnologías y lineamientos con los que operamos para asegurar interoperabilidad total con los repositorios institucionales y plataformas académicas existentes.</p>
-                <ul className="list__items list-standards">
+                <ul className="reasons-list">
                     <li className="list__item"><FaRegCheckCircle /> OAI-PMH 2.0 para cosecha de metadatos.</li>
                     <li className="list__item"><FaRegCheckCircle /> Dublin Core + OpenAIRE como base de normalización y estandarización.</li>
                     <li className="list__item"><FaRegCheckCircle /> Compatibilidad con DSpace, Dataverse, EPrints, Invenio y cualquier repositorio con endpoint OAI-PMH.</li>

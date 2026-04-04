@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciencia Abierta MX</title>
-    
+    <script>
+        // Set mode before Tailwind and CSS
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&f[]=clash-display@400,500,600,700&display=swap" rel="stylesheet">
@@ -23,7 +30,7 @@
 
     <script>
         tailwind.config = {
-            darkMode: 'media',
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -65,18 +72,16 @@
             --section-bg: rgba(245, 245, 245, 0.5);
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --obsidian: #0A0A0B;
-                --surface: #18181B;
-                --brand: #3B82F6;
-                --accent: #F59E0B;
-                --text: #E4E4E7;
-                --muted: #A1A1AA;
-                --card-bg: linear-gradient(180deg, rgba(39, 39, 42, 0.6) 0%, rgba(24, 24, 27, 0.8) 100%);
-                --card-border: rgba(255, 255, 255, 0.08);
-                --section-bg: rgba(24, 24, 27, 0.5);
-            }
+        :root.dark {
+            --obsidian: #0A0A0B;
+            --surface: #18181B;
+            --brand: #3B82F6;
+            --accent: #F59E0B;
+            --text: #E4E4E7;
+            --muted: #A1A1AA;
+            --card-bg: linear-gradient(180deg, rgba(39, 39, 42, 0.6) 0%, rgba(24, 24, 27, 0.8) 100%);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --section-bg: rgba(24, 24, 27, 0.5);
         }
 
         body {
@@ -228,6 +233,17 @@
 
             <nav>
                 <ul class="nav-menu" id="navMenu">
+                    <li>
+                        <button onclick="toggleTheme()" class="w-10 h-10 inline-flex items-center justify-center border border-white/40 rounded-full bg-transparent text-white transition-all duration-200 hover:bg-white/10 hover:border-white/70 active:scale-95 cursor-pointer ml-4 mr-2" aria-label="Alternar tema claro/oscuro" title="Alternar tema claro/oscuro">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-moon">
+                                <path d="M12 2v2"></path>
+                                <path d="M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715"></path>
+                                <path d="M16 12a4 4 0 0 0-4-4"></path>
+                                <path d="m19 5-1.256 1.256"></path>
+                                <path d="M20 12h2"></path>
+                            </svg>
+                        </button>
+                    </li>
                     <li><a href="https://buscador.cienciaabierta.mx/acerca-del-proyecto" class="nav-link">Acerca de</a></li>
                     <li><a href="https://buscador.cienciaabierta.mx/plan-de-trabajo" class="nav-link">Plan de Trabajo</a></li>
                     <li><a href="https://buscador.cienciaabierta.mx/informacion-tecnica" class="nav-link">Bibliotecarios</a></li>
@@ -289,17 +305,35 @@
             <h2 class="text-2xl font-display font-medium text-text mb-4">¿Por qué contratar una consultoría externa?</h2>
             <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <div class="p-6">
-                    <div class="text-4xl mb-4">📚</div>
+                    <div class="w-16 h-16 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-brand shadow-sm transition-transform hover:scale-105">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                        </svg>
+                    </div>
                     <h3 class="text-text font-bold mb-2">Hablamos "Bibliotecario"</h3>
                     <p class="text-sm text-muted">Entendemos la diferencia entre Dublin Core y MARC21.</p>
                 </div>
                 <div class="p-6">
-                    <div class="text-4xl mb-4">⚡</div>
+                    <div class="w-16 h-16 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-accent shadow-sm transition-transform hover:scale-105">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
                     <h3 class="text-text font-bold mb-2">Sin Curva de Aprendizaje</h3>
                     <p class="text-sm text-muted">Su equipo de TI tiene otras prioridades. Nosotros vivimos DSpace.</p>
                 </div>
                 <div class="p-6">
-                    <div class="text-4xl mb-4">🏛️</div>
+                    <div class="w-16 h-16 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6 text-slate-500 dark:text-slate-400 shadow-sm transition-transform hover:scale-105">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="3" x2="21" y1="22" y2="22"></line>
+                            <line x1="6" x2="6" y1="18" y2="11"></line>
+                            <line x1="10" x2="10" y1="18" y2="11"></line>
+                            <line x1="14" x2="14" y1="18" y2="11"></line>
+                            <line x1="18" x2="18" y1="18" y2="11"></line>
+                            <polygon points="12 2 20 7 4 7"></polygon>
+                        </svg>
+                    </div>
                     <h3 class="text-text font-bold mb-2">Cumplimiento Normativo</h3>
                     <p class="text-sm text-muted">Garantizamos interoperabilidad nacional e internacional.</p>
                 </div>
@@ -422,11 +456,17 @@
 
             <div class="space-y-4">
                 <div class="flex items-center gap-4 text-muted">
-                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">✉️</div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-900 dark:text-white shrink-0">
+                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </svg>
                     <span>contacto@cienciaabierta.mx</span>
                 </div>
                 <div class="flex items-center gap-4 text-muted">
-                    <div class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center">🔒</div>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-slate-900 dark:text-white shrink-0">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg>
                     <span>Contratos bajo NDA (Acuerdo de Confidencialidad) disponible.</span>
                 </div>
             </div>
@@ -494,6 +534,16 @@
         function toggleMenu() {
             const list = document.getElementById('navMenu');
             list.classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
         }
 
         // Contact form submission

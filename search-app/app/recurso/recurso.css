@@ -106,18 +106,31 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .recurso-section h3 {
+    html:not([data-theme="light"]) .recurso-section h3 {
         color: #fff;
     }
 
-    .recurso-meta {
+    html:not([data-theme="light"]) .recurso-meta {
         color: #e2e2e2;
     }
 
-    .recurso-section {
+    html:not([data-theme="light"]) .recurso-section {
         background-color: #171717;
         color: #fff;
     }
 
     /* Chips use CSS variables; no override needed */
+}
+
+html[data-theme="dark"] .recurso-section h3 {
+    color: #fff;
+}
+
+html[data-theme="dark"] .recurso-meta {
+    color: #e2e2e2;
+}
+
+html[data-theme="dark"] .recurso-section {
+    background-color: #171717;
+    color: #fff;
 }

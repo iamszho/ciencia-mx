@@ -262,3 +262,10 @@ search-service/src/credentials/
 
 # service-account.json
 search-service/service-account.json
+
+drive-sa.json
+search-service/src/credentials/drive-sa.json
+
+AGENTS.md
+REPORTE_VULNERABILIDADES.md
+THEME_TOGGLE_IMPLEMENTATION.md

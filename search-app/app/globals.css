@@ -16,7 +16,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --background: #0a0a0a;
     --foreground: #ededed;
     --link-color: #7eb8ed;
@@ -28,6 +28,34 @@
     --chip-hover-color: #7eb8ed;
     --chip-hover-border: #475569;
   }
+}
+
+html[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #171717;
+  --link-color: #1a73e8;
+  --link-color-hover: #0d47a1;
+  --chip-bg: #f0f4f8;
+  --chip-color: #002744;
+  --chip-border: #e0e6ed;
+  --chip-hover-bg: #002744;
+  --chip-hover-color: #fff;
+  --chip-hover-border: #002744;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --link-color: #7eb8ed;
+  --link-color-hover: #b8daff;
+  --chip-bg: #1e293b;
+  --chip-color: #e2e8f0;
+  --chip-border: #334155;
+  --chip-hover-bg: #0f172a;
+  --chip-hover-color: #7eb8ed;
+  --chip-hover-border: #475569;
+  color-scheme: dark;
 }
 
 html,
@@ -74,7 +102,7 @@ h2 {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
+  html:not([data-theme="light"]) {
     color-scheme: dark;
   }
 }
@@ -210,18 +238,28 @@ h2 {
 }
 
 @media (prefers-color-scheme: dark) {
-  .page h1 {
+  html:not([data-theme="light"]) .page h1 {
     border-bottom: 1px solid #404040;
     color: #ededed;
   }
 
-  .page .intro-text {
+  html:not([data-theme="light"]) .page .intro-text {
     color: #ccc;
   }
 
-  .page .intro-text p {
+  html:not([data-theme="light"]) .page .intro-text p {
     color: #ccc;
   }
+}
+
+html[data-theme="dark"] .page h1 {
+  border-bottom: 1px solid #404040;
+  color: #ededed;
+}
+
+html[data-theme="dark"] .page .intro-text,
+html[data-theme="dark"] .page .intro-text p {
+  color: #ccc;
 }
 
 .list--with-title {
@@ -238,26 +276,43 @@ h2 {
 }
 
 @media (prefers-color-scheme: dark) {
-  .list--with-title .list__title {
+  html:not([data-theme="light"]) .list--with-title .list__title {
     background-color: #27272a;
     color: #e4e4e7;
   }
 }
 
+html[data-theme="dark"] .list--with-title .list__title {
+  background-color: #27272a;
+  color: #e4e4e7;
+}
+
 .list--with-title .list__items {
-  padding: 40px 20px 20px;
+  padding: 40px 20px 20px 60px;
   border: 1px solid #d3d3d3;
   border-radius: 10px;
 }
 
 @media (prefers-color-scheme: dark) {
-  .list--with-title .list__items {
+  html:not([data-theme="light"]) .list--with-title .list__items {
     border: 1px solid #404040;
   }
 }
 
+html[data-theme="dark"] .list--with-title .list__items {
+  border: 1px solid #404040;
+}
+
 .list__item {
-  list-style-type: none;
+  list-style-type: disc;
+  margin-bottom: 6px;
+}
+
+.reasons-list {
+  padding-left: 30px;
+}
+
+.reasons-list li {
   margin-bottom: 6px;
 }
 
@@ -269,10 +324,32 @@ h2 {
   text-decoration: none;
   margin-block: 40px;
   font-weight: bold;
+  border-radius: 8px;
 }
 
 .button.button--primary {
-  background-color: #002744;
+  background: linear-gradient(135deg, #0d3d6b 0%, #002744 100%);
+  border: none;
+  transition: color 0.2s ease;
+}
+
+/* Light mode hover: black background, white text */
+.button.button--primary:hover {
+  background: #111111;
+  color: #ffffff;
+}
+
+/* Dark mode hover: white background, dark text */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .button.button--primary:hover {
+    background: #ffffff;
+    color: #111111;
+  }
+}
+
+html[data-theme="dark"] .button.button--primary:hover {
+  background: #ffffff;
+  color: #111111;
 }
 
 .txt-center {
@@ -327,17 +404,33 @@ h2 {
   text-align: center;
   font-weight: bold;
   font-style: italic;
-  color: #bc9f5d;
+  color: #0a4a8a;
 }
 
 @media (prefers-color-scheme: dark) {
-  .number-items {
+  html:not([data-theme="light"]) .number-items {
     background-color: #1a1a1a;
   }
 
-  .number-items h2 {
-    color: #ededed;
+  html:not([data-theme="light"]) .number-items h2 {
+    color: #ffffff;
   }
+
+  html:not([data-theme="light"]) .number-items__count {
+    color: #7eb8ed;
+  }
+}
+
+html[data-theme="dark"] .number-items {
+  background-color: #1a1a1a;
+}
+
+html[data-theme="dark"] .number-items h2 {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] .number-items__count {
+  color: #7eb8ed;
 }
 
 @media screen and (max-width: 600px) {

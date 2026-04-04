@@ -35,7 +35,7 @@ export default function Page() {
 
             <div>
                 <h2> Por estas razones:</h2>
-                <ul>
+                <ul className="reasons-list">
                     <li>Ciencia MX no compite: complementa.</li>
                     <li>No sustituye: conecta.</li>
                     <li>Los derechos de autor permanecen intactos.</li>

@@ -46,11 +46,19 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .clasificacion-other-levels {
+  html:not([data-theme="light"]) .clasificacion-other-levels {
     border-top-color: #404040;
   }
 
-  .clasificacion-other-levels__title {
+  html:not([data-theme="light"]) .clasificacion-other-levels__title {
     color: var(--link-color);
   }
+}
+
+html[data-theme="dark"] .clasificacion-other-levels {
+  border-top-color: #404040;
+}
+
+html[data-theme="dark"] .clasificacion-other-levels__title {
+  color: var(--link-color);
 }
